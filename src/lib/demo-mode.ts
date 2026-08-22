@@ -32,5 +32,16 @@ export function isMockOperationsMode(
   return environment === "development";
 }
 
+export function isMockEngagementMode(
+  nodeEnv: string | null | undefined = process.env.NODE_ENV,
+  contentFlag: string | null | undefined = process.env.USE_MOCK_CONTENT,
+  operationsFlag: string | null | undefined = process.env.USE_MOCK_OPERATIONS,
+  appEnv: string | null | undefined = process.env.APP_ENV,
+  vercelEnv: string | null | undefined = process.env.VERCEL_ENV,
+) {
+  return isMockContentMode(nodeEnv, contentFlag, appEnv, vercelEnv)
+    && isMockOperationsMode(nodeEnv, operationsFlag, appEnv, vercelEnv);
+}
+
 /** @deprecated Use isMockContentMode or isMockOperationsMode explicitly. */
 export const isDevelopmentDemoMode = isMockContentMode;

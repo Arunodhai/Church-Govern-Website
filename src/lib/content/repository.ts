@@ -1,5 +1,6 @@
 import "server-only";
 
+import { isMockEngagementMode } from "@/lib/demo-mode";
 import { createSupabaseAdminClient } from "@/lib/supabase/server";
 import { sanityEnv } from "@/sanity/env";
 import { fetchSanity } from "@/sanity/lib/fetch";
@@ -141,7 +142,7 @@ export async function getPublicGallery(slug: string): Promise<PublicGallery | nu
 }
 
 export async function getBlogEngagement(slug: string): Promise<PublicBlogEngagement> {
-  if (isMockContentEnabled && mockBlogs.some((post) => post.slug === slug)) {
+  if (isMockEngagementMode() && mockBlogs.some((post) => post.slug === slug)) {
     return {
       comments: [
         { id: `mock-comment-${slug}-1`, name: "Mock reader", body: "Development-only approved comment for testing the public discussion layout.", created_at: "2026-08-20T10:00:00.000Z" },

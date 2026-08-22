@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isMockContentMode, isMockOperationsMode, resolveAppEnvironment } from "./demo-mode";
+import { isMockContentMode, isMockEngagementMode, isMockOperationsMode, resolveAppEnvironment } from "./demo-mode";
 
 describe("deployment demo boundaries", () => {
   it("resolves explicit and Vercel preview environments conservatively", () => {
@@ -19,5 +19,11 @@ describe("deployment demo boundaries", () => {
     expect(isMockOperationsMode("production", null, "staging")).toBe(false);
     expect(isMockOperationsMode("production", "true", "staging")).toBe(true);
     expect(isMockOperationsMode("production", "true", "production")).toBe(false);
+  });
+
+  it("uses mock engagement only when both content and operations are mocked", () => {
+    expect(isMockEngagementMode("development", "true", "true", "development")).toBe(true);
+    expect(isMockEngagementMode("production", "true", "false", "staging")).toBe(false);
+    expect(isMockEngagementMode("production", "true", "true", "production")).toBe(false);
   });
 });
