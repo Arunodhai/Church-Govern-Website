@@ -28,7 +28,7 @@ npm run dev
 
 Open the public website at <http://localhost:3000>, Sanity Studio at <http://localhost:3000/studio>, the operational dashboard at <http://localhost:3000/admin>, and the health check at <http://localhost:3000/api/health>.
 
-The current stakeholder Preview is <https://church-govern-staging.vercel.app>. It is intentionally labelled as provisional, uses simulated operational writes until server-secret transfer is approved, and is blocked from indexing.
+The current stakeholder Preview is <https://church-govern-staging.vercel.app>. It is intentionally labelled as provisional, uses live Supabase operational writes and temporary Resend notification settings, and is blocked from indexing. Editorial content remains mock/provisional until the client supplies and approves final material.
 
 Without Sanity identifiers and a hosted Studio URL, `/studio` shows a safe setup screen. Run `npm run sanity:dev` for local schema work. Public pages use development-only source content where available; production deliberately has no source-code fallback.
 

@@ -129,7 +129,10 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Stable canonical, `noindex,nofollow`, disallow-all robots, health response, CSP, HSTS, and other security headers were verified on the deployed URL.
 - [x] A deployed contact submission completed in explicit non-persistent mock mode; no PII was stored or emailed.
 - [x] Deployed desktop 1440-by-1000 and mobile 390-by-844 browser checks showed no horizontal overflow or application error state. Vercel's optional feedback-toolbar script is intentionally blocked by CSP and may log a provider-only console error.
-- [ ] Live Vercel operations require explicit authorization to transfer the existing server-only Supabase/rate-limit secrets. Resend delivery also requires approved sender and recipient values.
+- [x] Live Vercel operations are active: contact, topic, moderated comment, and rating writes succeeded; exact QA records/audit entries were cleaned up and rate-limit counters were retained.
+- [x] Deployed Supabase administrator authentication and all operations collections loaded at 390 by 844 without overflow or application error.
+- [x] Resend accepted the synthetic contact notification and the API returned `notificationStatus: sent` to the temporary recipient configuration.
+- [ ] The recipient must confirm inbox delivery. Rotate the Resend key because it was pasted into chat, then update the sensitive Vercel value.
 
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run typecheck` — `next typegen && tsc --noEmit` passed locally through `npm run check`, 2026-08-15.
