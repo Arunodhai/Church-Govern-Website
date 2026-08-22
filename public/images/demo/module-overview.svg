@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative Church Govern module overview</title>
+  <desc id="desc">A clearly labelled demo interface concept with navigation, summary cards, an activity chart and a work queue.</desc>
+  <rect width="1600" height="1000" fill="#f3f0e8"/>
+  <rect x="70" y="65" width="1460" height="870" rx="28" fill="#fffdf8" stroke="#c7d2cb" stroke-width="4"/>
+  <rect x="70" y="65" width="280" height="870" rx="28" fill="#153f34"/>
+  <circle cx="140" cy="145" r="38" fill="#f4e7b7"/><path d="M140 120v50M118 145h44" stroke="#153f34" stroke-width="8" stroke-linecap="round"/>
+  <text x="195" y="154" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="700">Church Govern</text>
+  <g fill="#dfe9e3" font-family="Arial, sans-serif" font-size="22"><text x="120" y="265">Overview</text><text x="120" y="335">People &amp; records</text><text x="120" y="405">Requests</text><text x="120" y="475">Reports</text><text x="120" y="545">Settings</text></g>
+  <rect x="104" y="225" width="212" height="62" rx="12" fill="#ffffff" opacity=".16"/>
+  <text x="405" y="132" fill="#6b746f" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">DEMO UI CONCEPT</text>
+  <text x="405" y="190" fill="#153f34" font-family="Georgia, serif" font-size="48">Module overview</text>
+  <text x="405" y="230" fill="#66736c" font-family="Arial, sans-serif" font-size="23">Illustrative content only - final product screens pending approval</text>
+  <g><rect x="405" y="285" width="315" height="155" rx="18" fill="#edf3ef"/><rect x="750" y="285" width="315" height="155" rx="18" fill="#f4ead0"/><rect x="1095" y="285" width="365" height="155" rx="18" fill="#e9eef0"/></g>
+  <g fill="#53635b" font-family="Arial, sans-serif" font-size="19"><text x="438" y="330">OPEN WORK</text><text x="783" y="330">REVIEW DUE</text><text x="1128" y="330">RECORD QUALITY</text></g>
+  <g fill="#153f34" font-family="Georgia, serif" font-size="58"><text x="438" y="400">24</text><text x="783" y="400">08</text><text x="1128" y="400">92%</text></g>
+  <rect x="405" y="485" width="650" height="375" rx="18" fill="#ffffff" stroke="#d7ded9" stroke-width="3"/>
+  <text x="440" y="535" fill="#153f34" font-family="Arial, sans-serif" font-size="25" font-weight="700">Activity trend</text>
+  <path d="M455 785 C560 700 620 735 700 630 S850 690 980 560" fill="none" stroke="#b18748" stroke-width="10" stroke-linecap="round"/>
+  <path d="M455 795H990M455 710H990M455 625H990M455 540H990" stroke="#e3e7e4" stroke-width="2"/>
+  <rect x="1085" y="485" width="375" height="375" rx="18" fill="#ffffff" stroke="#d7ded9" stroke-width="3"/>
+  <text x="1120" y="535" fill="#153f34" font-family="Arial, sans-serif" font-size="25" font-weight="700">Priority queue</text>
+  <g fill="#dfe9e3"><rect x="1120" y="580" width="305" height="54" rx="10"/><rect x="1120" y="655" width="305" height="54" rx="10"/><rect x="1120" y="730" width="305" height="54" rx="10"/></g>
+</svg>

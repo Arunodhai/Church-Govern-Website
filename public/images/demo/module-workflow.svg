@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative Church Govern workflow</title>
+  <desc id="desc">A clearly labelled demo interface concept showing four stages in a church administration workflow.</desc>
+  <rect width="1600" height="1000" fill="#e5ece7"/>
+  <rect x="65" y="65" width="1470" height="870" rx="30" fill="#fffdf8" stroke="#bac8c0" stroke-width="4"/>
+  <rect x="65" y="65" width="1470" height="105" rx="30" fill="#153f34"/>
+  <circle cx="130" cy="118" r="28" fill="#f4e7b7"/><path d="M130 100v36M113 118h34" stroke="#153f34" stroke-width="6" stroke-linecap="round"/>
+  <text x="180" y="128" fill="#ffffff" font-family="Arial, sans-serif" font-size="29" font-weight="700">Church Govern</text>
+  <text x="1420" y="127" fill="#dfe9e3" text-anchor="end" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">DEMO UI CONCEPT</text>
+  <text x="140" y="255" fill="#153f34" font-family="Georgia, serif" font-size="52">Guided workflow</text>
+  <text x="140" y="300" fill="#66736c" font-family="Arial, sans-serif" font-size="23">A representative path for demonstrating status, ownership and review points</text>
+  <path d="M280 470H1320" stroke="#ccd7d0" stroke-width="12" stroke-linecap="round"/>
+  <g font-family="Arial, sans-serif">
+    <g><circle cx="280" cy="470" r="58" fill="#153f34"/><text x="280" y="482" fill="#fff" text-anchor="middle" font-size="34" font-weight="700">1</text><text x="280" y="575" fill="#153f34" text-anchor="middle" font-size="25" font-weight="700">Capture</text><text x="280" y="615" fill="#66736c" text-anchor="middle" font-size="19">Collect required details</text></g>
+    <g><circle cx="625" cy="470" r="58" fill="#b18748"/><text x="625" y="482" fill="#fff" text-anchor="middle" font-size="34" font-weight="700">2</text><text x="625" y="575" fill="#153f34" text-anchor="middle" font-size="25" font-weight="700">Review</text><text x="625" y="615" fill="#66736c" text-anchor="middle" font-size="19">Check context and access</text></g>
+    <g><circle cx="975" cy="470" r="58" fill="#153f34"/><text x="975" y="482" fill="#fff" text-anchor="middle" font-size="34" font-weight="700">3</text><text x="975" y="575" fill="#153f34" text-anchor="middle" font-size="25" font-weight="700">Complete</text><text x="975" y="615" fill="#66736c" text-anchor="middle" font-size="19">Finish authorized work</text></g>
+    <g><circle cx="1320" cy="470" r="58" fill="#6f8579"/><text x="1320" y="482" fill="#fff" text-anchor="middle" font-size="34" font-weight="700">4</text><text x="1320" y="575" fill="#153f34" text-anchor="middle" font-size="25" font-weight="700">Notify</text><text x="1320" y="615" fill="#66736c" text-anchor="middle" font-size="19">Share the next step</text></g>
+  </g>
+  <rect x="140" y="700" width="1320" height="145" rx="20" fill="#f1eee5"/>
+  <text x="185" y="755" fill="#153f34" font-family="Arial, sans-serif" font-size="23" font-weight="700">Demo note</text>
+  <text x="185" y="800" fill="#66736c" font-family="Arial, sans-serif" font-size="21">Names, fields, permissions and product behavior shown here are illustrative and require client approval.</text>
+</svg>

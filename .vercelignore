@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.next
+dist
+node_modules
+.playwright-mcp
+docs
+supabase
+*.log
+.DS_Store
