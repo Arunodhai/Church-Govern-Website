@@ -132,6 +132,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Live Vercel operations are active: contact, topic, moderated comment, and rating writes succeeded; exact QA records/audit entries were cleaned up and rate-limit counters were retained.
 - [x] Deployed Supabase administrator authentication and all operations collections loaded at 390 by 844 without overflow or application error.
 - [x] Resend accepted the synthetic contact notification and the API returned `notificationStatus: sent` to the temporary recipient configuration.
+- [x] Approved-comment publication regression — an approved staging comment was verified in the database, public RPC/API, server-rendered article HTML, and visible mobile blog UI after commit `c9850bf`, 2026-08-22.
 - [ ] The recipient must confirm inbox delivery. Rotate the Resend key because it was pasted into chat, then update the sensitive Vercel value.
 
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.

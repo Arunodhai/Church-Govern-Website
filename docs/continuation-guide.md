@@ -122,6 +122,7 @@ Do not run the seed against an account you do not own or without confirming the 
 - Live Preview integration was activated after explicit owner approval. `SUPABASE_SERVICE_ROLE_KEY`, `RATE_LIMIT_SECRET`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, and `LEAD_NOTIFICATION_EMAIL` are sensitive Preview variables; `USE_MOCK_OPERATIONS=false`.
 - A synthetic contact enquiry persisted with a real UUID and returned `notificationStatus: sent`. Synthetic topic, pending comment, and rating writes also succeeded. The exact QA records and matching audit entries were removed; rate-limit counters were intentionally retained. `sent` proves provider acceptance, not inbox delivery.
 - Supabase administrator authentication succeeded on the deployed domain. Dashboard, three lead collections, comment/topic moderation, analytics, and audit all loaded at 390 by 844 without horizontal overflow or application error states.
+- Approved-comment regression fixed in commit `c9850bf`: mock editorial content no longer forces mock engagement when staging operations are live. The affected approved comment was verified in Supabase, the public RPC/API, server-rendered blog HTML, and the visible 390-by-844 blog page after deployment.
 
 - `npm run check` passed: ESLint, generated route types and strict TypeScript, 11 Vitest files/42 tests, and the Next.js 16.3.1 webpack production build.
 - Twelve representative public/system routes returned HTTP 200 against `next dev`.
