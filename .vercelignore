@@ -5,7 +5,7 @@
 dist
 node_modules
 .playwright-mcp
-docs
-supabase
+/docs/
+/supabase/
 *.log
 .DS_Store
