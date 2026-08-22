@@ -12,7 +12,9 @@ export type PublicSeo = {
 
 export const siteUrl = () => {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  const vercelHost = resolveAppEnvironment() === "production"
+    ? process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL
+    : process.env.VERCEL_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL;
   return (configured || (vercelHost ? `https://${vercelHost}` : "http://localhost:3000")).replace(/\/$/, "");
 };
 
