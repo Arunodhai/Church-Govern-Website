@@ -122,11 +122,20 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Chrome mobile Lighthouse after accessibility fixes: performance 98, accessibility 100, best practices 100. SEO was 69 because staging deliberately emits `noindex,nofollow` and disallows crawlers.
 - [x] Staging metadata, robots, and security-header behavior passed locally: non-production responses are no-index, robots disallow `/`, and the deployed-only CSP/header configuration is present in the production build.
 
+### Vercel Preview evidence — 2026-08-22
+
+- [x] Vercel cloud build passed and the stable share URL <https://church-govern-staging.vercel.app> returns HTTP 200 without Vercel SSO.
+- [x] All 38 deployed public/system routes returned expected 200/307 statuses; every module and blog detail was included.
+- [x] Stable canonical, `noindex,nofollow`, disallow-all robots, health response, CSP, HSTS, and other security headers were verified on the deployed URL.
+- [x] A deployed contact submission completed in explicit non-persistent mock mode; no PII was stored or emailed.
+- [x] Deployed desktop 1440-by-1000 and mobile 390-by-844 browser checks showed no horizontal overflow or application error state. Vercel's optional feedback-toolbar script is intentionally blocked by CSP and may log a provider-only console error.
+- [ ] Live Vercel operations require explicit authorization to transfer the existing server-only Supabase/rate-limit secrets. Resend delivery also requires approved sender and recipient values.
+
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run typecheck` — `next typegen && tsc --noEmit` passed locally through `npm run check`, 2026-08-15.
 - [x] `npm test` — 7 files and 29 tests passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run build` — Next.js 16.3.1 webpack production build passed locally; CMS-backed public routes are dynamic, 2026-08-15.
-- [ ] Staging browser/accessibility evidence — URL/date/reviewer:
+- [x] Staging browser/accessibility evidence — Vercel Preview URL above; local Lighthouse plus deployed desktop/mobile route checks, 2026-08-22.
 - [x] Development migration/content evidence — `202608140001` and `202608140002` present in linked Supabase project; anonymous REST returned 17 modules, 6 blogs, 10 FAQs, 7 pages, and 10 navigation records, 2026-08-14.
 - [ ] Production deployment — commit/URL/time/operator/approver:
 - [ ] Post-release smoke and monitoring observation — result/date:

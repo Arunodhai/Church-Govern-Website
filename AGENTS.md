@@ -93,6 +93,7 @@ Before handoff:
 ## Current handoff snapshot — 2026-08-22
 
 - Git source is published to the approved public repository `Arunodhai/Church-Govern-Website`. Client source documents, environment files, and provider linkage metadata are intentionally excluded.
+- Vercel Preview is live at `https://church-govern-staging.vercel.app`. It is shareable without Vercel SSO, deliberately `noindex`, and currently uses simulated operations because the owner has not yet explicitly authorized copying the existing Supabase service-role/rate-limit secrets into Vercel.
 - The revised proposal replaces the custom Supabase editorial CMS and Vercel with Sanity Studio and Hostinger Web Apps. Public editorial reads go through `src/lib/content/repository.ts`; Supabase remains the operational data/auth boundary.
 - The user's private Sanity development dataset is connected and has an idempotent 51-document provisional seed: 7 pages, 2 suites, 17 modules, 6 blogs, 6 categories, 10 FAQs, navigation, footer, and settings. It contains no fabricated testimonials and still requires an approved read-token/visibility decision.
 - Development mock mode demonstrates the complete proposed experience while client material is pending: all public pages, 17 modules with UI concepts and FAQs, blogs with thumbnails/ratings, hero rotation, gallery/lightbox, forms, engagement, representative operational records, workflows, moderation, audit, and illustrative analytics.
@@ -100,8 +101,9 @@ Before handoff:
 - `/admin` is operational only. Its typography/contrast defect is fixed through an isolated `.admin-shell` treatment; representative public/admin routes have no horizontal overflow at 390-by-844.
 - Latest verification on 2026-08-22: staging-mode `npm run check` passed ESLint, generated route types plus strict TypeScript, 13 Vitest files/48 tests, and the Next.js 16.3.1 webpack production build. A complete local route sweep and authenticated admin desktop/mobile checks passed. Mobile Lighthouse scored 98 performance, 100 accessibility, and 100 best practices; SEO is deliberately reduced by staging `noindex`.
 - Migrations `202608210003` and `202608220004` are applied. Anonymous RLS checks returned no operational rows and denied both engagement RPCs; service-role RPC checks passed. Synthetic live lead/topic/comment/rating flows passed and their QA data was removed. Resend delivery, GA4/GSC, Hostinger production, approved content/media, backup/rollback, and full cross-browser audits remain unverified.
+- The final Vercel cloud build passed. The stable URL passed 38 HTTP routes, health, security/no-index headers, canonical/robots checks, and a simulated contact submission. Desktop 1440-by-1000 and mobile 390-by-844 rendered without horizontal overflow. Vercel's optional feedback-toolbar script is blocked by CSP and may appear as a provider-only console message.
 - A Supabase administrator account exists, but credentials must be obtained from the owner through a secure channel. Never add the email/password or service-role key to documentation, source, screenshots, or test fixtures.
-- Recommended next task: run the client walkthrough using mock mode, record feedback against the requirements matrix, and replace each labelled placeholder with approved Sanity content/assets before disabling demo mode.
+- Recommended next task: obtain explicit authorization to transfer the server-only Supabase and rate-limit secrets to Vercel, confirm the Resend sender and notification recipient, switch Preview operations to live mode, redeploy, and verify persisted submissions plus delivery. Then run the client walkthrough and replace each labelled placeholder with approved Sanity content/assets.
 
 ## Common commands
 

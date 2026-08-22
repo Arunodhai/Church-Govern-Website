@@ -112,6 +112,15 @@ Do not run the seed against an account you do not own or without confirming the 
 - A local staging route sweep and authenticated operational-admin browser sweep passed at desktop and 390-by-844 without horizontal overflow or application console errors.
 - Chrome mobile Lighthouse after contrast/name fixes: performance 98, accessibility 100, best practices 100, SEO 69. The SEO score is expected because staging deliberately emits `noindex,nofollow` and disallows crawling.
 
+## Vercel Preview evidence — 2026-08-22
+
+- Stable share URL: <https://church-govern-staging.vercel.app>; Vercel SSO protection is disabled for stakeholder access, while application metadata and `robots.txt` block indexing.
+- Final Vercel cloud build passed for commit `69fe9e0`. A deployment-only ignore defect that excluded `src/lib/supabase` was reproduced, fixed in commit `dd4eace`, and the corrected build passed.
+- All 38 deployed routes passed with their expected 200/307 statuses, including every module and blog detail, `/admin`, `/studio`, health, robots, and sitemap.
+- The stable URL emits its own canonical, `noindex,nofollow`, CSP/security headers, and a disallow-all robots file. A non-persistent contact submission returned the explicit mock success response.
+- The home page and representative public/admin-login routes were browser-checked at 1440 by 1000 and 390 by 844 without horizontal overflow or application error states. Vercel's optional feedback-toolbar script is blocked by CSP and produces a provider-only console message for Vercel-authenticated viewers.
+- `RESEND_API_KEY` is stored as a sensitive Preview variable, but notifications are inactive because sender/recipient values are not approved and operations remain simulated. Do not claim email delivery.
+
 - `npm run check` passed: ESLint, generated route types and strict TypeScript, 11 Vitest files/42 tests, and the Next.js 16.3.1 webpack production build.
 - Twelve representative public/system routes returned HTTP 200 against `next dev`.
 - Desktop and 390-by-844 home views, the Sanity setup gate, and the unauthenticated admin login were visually inspected without application console errors.
@@ -127,6 +136,6 @@ Do not run the seed against an account you do not own or without confirming the 
 
 ## Next safe task
 
-Finish and verify the Vercel Preview deployment without weakening `noindex`. When real material arrives, replace mock copy/media/testimonials and approve records in Sanity; then decide private-dataset access, disable editorial mock mode, verify public Sanity rendering, configure Resend sender/recipient and analytics, and run the full screen-reader/cross-browser suite before Hostinger staging. Establish SBL ownership before production.
+After explicit owner authorization, copy the server-only Supabase service-role and rate-limit secrets to Vercel, set `USE_MOCK_OPERATIONS=false`, confirm the Resend sender and notification recipient, redeploy, and verify persistence plus delivery. When real material arrives, replace mock copy/media/testimonials and approve records in Sanity; then decide private-dataset access, disable editorial mock mode, verify public Sanity rendering, configure analytics, and run the full screen-reader/cross-browser suite before Hostinger staging. Establish SBL ownership before production.
 
 Use exact evidence language: implemented means code exists; tested means named checks ran; deployed means a target URL was checked; production-ready requires every applicable release gate.
