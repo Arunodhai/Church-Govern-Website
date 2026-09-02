@@ -49,6 +49,27 @@ yarn-error.log*
 # local Supabase CLI linkage and runtime metadata
 /supabase/.temp/
 
+# local agent tooling (not application source)
+/.agent/
+/.agents/
+/.claude/
+/.codex/
+/.cursor/
+/.gemini/
+/.hermes/
+/.impeccable/
+/.kiro/
+/.omc/
+/.opencode/
+/.pi/
+/.qoder/
+/.vibe/
+
+# local visual-review captures and duplicate source artwork
+/home-before-full.png
+/home-hero-before.png
+/main img.png
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

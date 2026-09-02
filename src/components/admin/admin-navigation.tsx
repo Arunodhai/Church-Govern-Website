@@ -61,7 +61,7 @@ export function AdminNavigation({ collections }: { collections: CollectionConfig
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-3 py-2 text-sm font-semibold text-white lg:hidden"
+        className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/20 px-3 py-2 text-sm font-semibold text-white lg:hidden"
         aria-expanded={open}
         aria-controls="admin-navigation"
       >
@@ -71,21 +71,21 @@ export function AdminNavigation({ collections }: { collections: CollectionConfig
         <Link
           href="/admin"
           onClick={() => setOpen(false)}
-          className={`mb-5 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${pathname === "/admin" ? "bg-emerald-400 text-slate-950" : "text-slate-300 hover:bg-white/10 hover:text-white"}`}
+          className={`mb-3 flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition ${pathname === "/admin" ? "bg-[#dff43b] text-[#101112]" : "text-slate-300 hover:bg-white/10 hover:text-white"}`}
         >
           <LayoutDashboard size={18} /> Overview
         </Link>
         <Link
           href="/studio"
           onClick={() => setOpen(false)}
-          className="mb-5 flex items-center gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 py-2.5 text-sm font-semibold text-emerald-200 transition hover:bg-emerald-400/20 hover:text-white"
+          className="mb-6 flex min-h-11 items-center gap-3 rounded-lg border border-[#58c8b0]/50 bg-[#58c8b0]/15 px-3 py-2.5 text-sm font-semibold text-[#bceee3] transition hover:bg-[#58c8b0]/25 hover:text-white"
         >
           <ExternalLink size={18} /> Sanity Studio
         </Link>
         <div className="space-y-5">
           {groups.map((group) => (
             <section key={group.kind}>
-              <div className="mb-2 flex items-center gap-2 px-3 text-[0.67rem] font-bold uppercase tracking-[0.18em] text-slate-400">
+              <div className="mb-1.5 flex items-center gap-2 px-3 text-[0.66rem] font-bold uppercase tracking-[0.14em] text-slate-400">
                 {group.label}<ChevronDown size={13} aria-hidden="true" />
               </div>
               <div className="space-y-1">
@@ -98,7 +98,7 @@ export function AdminNavigation({ collections }: { collections: CollectionConfig
                       key={collection.key}
                       href={href}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${active ? "admin-nav-active bg-emerald-50 font-semibold text-slate-950 shadow-sm" : "text-slate-300 hover:bg-white/10 hover:text-white"}`}
+                      className={`flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition ${active ? "admin-nav-active bg-[#dff43b] font-semibold text-[#101112]" : "text-slate-300 hover:bg-white/10 hover:text-white"}`}
                     >
                       <Icon size={17} aria-hidden="true" />
                       <span className="truncate">{collection.label}</span>

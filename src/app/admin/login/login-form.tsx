@@ -18,7 +18,7 @@ export function LoginForm({ nextPath }: { nextPath: string }) {
           type="email"
           autoComplete="email"
           required
-          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-950 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
+          className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-950 outline-none transition focus:border-[#8fa313] focus:ring-2 focus:ring-[#eff8a7]"
         />
         {state?.errors?.email?.map((error) => <p className="mt-1 text-sm text-red-700" key={error}>{error}</p>)}
       </div>
@@ -30,19 +30,18 @@ export function LoginForm({ nextPath }: { nextPath: string }) {
           type="password"
           autoComplete="current-password"
           required
-          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-950 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
+          className="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-950 outline-none transition focus:border-[#8fa313] focus:ring-2 focus:ring-[#eff8a7]"
         />
         {state?.errors?.password?.map((error) => <p className="mt-1 text-sm text-red-700" key={error}>{error}</p>)}
       </div>
-      {state?.message && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-800">{state.message}</p>}
+      {state?.message && <p role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">{state.message}</p>}
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-xl bg-emerald-800 px-4 py-3 font-semibold text-white transition hover:bg-emerald-900 disabled:cursor-wait disabled:opacity-60"
+        className="min-h-12 w-full rounded-lg bg-[#dff43b] px-4 py-3 font-semibold text-[#101112] transition hover:bg-[#cfe72b] disabled:cursor-wait disabled:opacity-60"
       >
         {pending ? "Signing in…" : "Sign in securely"}
       </button>
     </form>
   );
 }
-

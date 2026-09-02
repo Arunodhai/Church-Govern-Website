@@ -47,35 +47,35 @@ export default async function AdminDashboard() {
     <div className="mx-auto max-w-7xl">
       <header className="flex flex-col gap-5 border-b border-slate-200 pb-8 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-800">Operations overview</p>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#687413]">Operations overview</p>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Good to see you, {admin.profile.display_name.split(" ")[0]}.</h1>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">A focused view of enquiries, community activity, and website performance that needs attention.</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link href="/studio" className="rounded-xl bg-emerald-900 px-4 py-2.5 text-sm font-semibold text-white">Open Sanity Studio</Link>
+          <Link href="/studio" className="inline-flex min-h-11 items-center rounded-lg bg-[#dff43b] px-4 py-2.5 text-sm font-semibold text-[#101112] transition hover:bg-[#cfe72b]">Open Sanity Studio</Link>
         </div>
       </header>
 
-      {admin.mode === "demo" && <section className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-6 text-amber-950" role="status"><strong>Development demo operations</strong><span className="ml-2">All people, churches, counts and activity below are clearly labelled sample data. Workflow changes stay on this screen and are never sent or stored.</span></section>}
+      {admin.mode === "demo" && <section className="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-6 text-amber-950" role="status"><strong>Development demo operations</strong><span className="ml-2">All people, churches, counts and activity below are clearly labelled sample data. Workflow changes stay on this screen and are never sent or stored.</span></section>}
 
-      <section className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Key metrics">
+      <section className="mt-7 grid overflow-hidden rounded-xl border border-slate-200 bg-white sm:grid-cols-2 xl:grid-cols-3" aria-label="Key metrics">
         {metrics.map(({ label, value, icon: Icon, href }) => (
-          <Link key={label} href={href} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm">
-            <div className="flex items-start justify-between gap-3"><Icon className="text-emerald-800" size={20} /><span className="text-2xl font-semibold">{value}</span></div>
+          <Link key={label} href={href} className="border-b border-slate-200 p-5 transition hover:bg-slate-50 sm:border-r xl:border-b-0 last:border-r-0">
+            <div className="flex items-start justify-between gap-3"><Icon className="text-[#38aa92]" size={20} /><span className="text-2xl font-semibold tabular-nums">{value}</span></div>
             <p className="mt-5 text-sm font-medium text-slate-600">{label}</p>
           </Link>
         ))}
       </section>
 
-      {pending > 0 && <section className="mt-7 flex flex-col gap-4 rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
+      {pending > 0 && <section className="mt-7 flex flex-col gap-4 rounded-xl border border-amber-200 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex gap-3"><CircleAlert className="mt-0.5 shrink-0 text-amber-700" size={20} /><div><h2 className="font-semibold">Community review queue</h2><p className="mt-1 text-sm text-amber-900/75">{pending} comment or topic submission{pending === 1 ? "" : "s"} await a moderation decision.</p></div></div>
-        <Link href="/admin/manage/comments" className="inline-flex items-center gap-2 text-sm font-semibold text-amber-900">Review queue <ArrowRight size={16} /></Link>
+        <Link href="/admin/manage/comments" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-amber-950">Review queue <ArrowRight size={16} /></Link>
       </section>}
 
       <div className="mt-10 flex items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Workspaces</p><h2 className="mt-1 text-xl font-semibold">Manage operations</h2></div></div>
       <section className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {visible.map((collection) => (
-          <Link key={collection.key} href={`/admin/manage/${collection.key}`} className="group rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm">
+          <Link key={collection.key} href={`/admin/manage/${collection.key}`} className="group rounded-xl border border-[#e2e7e7] bg-white p-5 transition hover:border-[#b9dcd4] hover:bg-[#f8fcfb]">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className="text-base font-semibold">{collection.label}</h3>
@@ -83,7 +83,7 @@ export default async function AdminDashboard() {
               </div>
               {counts[collection.key] !== undefined && <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-sm font-bold">{counts[collection.key]}</span>}
             </div>
-            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800">Open <ArrowRight size={15} /></span>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#384142]">Open <ArrowRight size={15} /></span>
           </Link>
         ))}
       </section>

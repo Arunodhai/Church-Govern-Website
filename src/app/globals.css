@@ -413,7 +413,35 @@ h3 { line-height: 1.25; }
 :where(.admin-shell) input::placeholder,
 :where(.admin-shell) textarea::placeholder { color: #64748b; opacity: 1; }
 :where(.admin-shell) .admin-nav-active { color: #0f172a !important; }
-.mock-content-banner { position: relative; z-index: 20; border-bottom: 1px solid #f3ca52; background: #fff3c4; padding: .55rem 1rem; color: #553b00; text-align: center; font-family: var(--font-sans); font-size: .78rem; font-weight: 750; letter-spacing: .035em; }
+:where(.admin-shell),
+:where(.admin-login) {
+  accent-color: #8fa313;
+  caret-color: #687413;
+}
+:where(.admin-shell) ::selection,
+:where(.admin-login) ::selection { background: #dff43b; color: #101112; }
+:where(.admin-shell) :focus-visible,
+:where(.admin-login) :focus-visible { outline: 3px solid #aabd19; outline-offset: 2px; }
+:where(.admin-shell) button,
+:where(.admin-shell) a,
+:where(.admin-shell) input,
+:where(.admin-shell) select,
+:where(.admin-shell) textarea,
+:where(.admin-login) button,
+:where(.admin-login) a,
+:where(.admin-login) input { transition-duration: 160ms; transition-timing-function: cubic-bezier(.2,.8,.2,1); }
+:where(.admin-shell) .admin-record-status[data-status="new"],
+:where(.admin-shell) .admin-record-status[data-status="pending"] { background: #fff3cd; color: #6b4d00; }
+:where(.admin-shell) .admin-record-status[data-status="contacted"],
+:where(.admin-shell) .admin-record-status[data-status="qualified"] { background: #dff5ef; color: #1f6153; }
+:where(.admin-shell) .admin-record-status[data-status="approved"],
+:where(.admin-shell) .admin-record-status[data-status="recorded"] { background: #e7f3ed; color: #205a43; }
+:where(.admin-shell) .admin-record-status[data-status="rejected"],
+:where(.admin-shell) .admin-record-status[data-status="spam"] { background: #f7e9e7; color: #8a3028; }
+@media (prefers-reduced-motion: reduce) {
+  :where(.admin-shell) *,
+  :where(.admin-login) * { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
 .hero-community-photo--rotating > img { opacity: 0; transition: opacity .7s ease; }
 .hero-community-photo--rotating > img.is-active { opacity: 1; }
 .hero-community-photo--rotating > em { position: absolute; top: 12px; left: 12px; z-index: 2; border: 1px solid rgba(255,255,255,.42); background: rgba(16,47,39,.82); padding: 7px 9px; color: #fff; font-family: var(--font-sans); font-size: .62rem; font-style: normal; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }

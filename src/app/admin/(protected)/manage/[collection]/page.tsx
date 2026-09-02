@@ -63,8 +63,8 @@ export default async function CollectionPage({ params }: { params: Promise<{ col
 
   return (
     <div className="mx-auto max-w-7xl">
-      <Link href="/admin" className="text-sm font-semibold text-emerald-800">← Dashboard</Link>
-      <p className="mt-7 text-xs font-bold uppercase tracking-[0.18em] text-emerald-800">{config.kind} workspace</p>
+      <Link href="/admin" className="inline-flex min-h-11 items-center text-sm font-semibold text-[#384142]">← Dashboard</Link>
+      <p className="mt-5 text-xs font-bold uppercase tracking-[0.15em] text-[#687413]">{config.kind} workspace</p>
       <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{config.label}</h1>
       <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{config.description}. Access is restricted to approved roles and material changes are captured in the audit trail.</p>
       {admin.mode === "demo" && key === "analytics" ? <DemoAnalyticsWorkspace /> : <ManagementWorkspace

@@ -19,7 +19,7 @@ export function ModuleCard({ module }: { module: ModuleSummary }) {
       <p className="module-card__suite">{module.suite}</p>
       <h3>{module.name}</h3>
       <p>{module.summary}</p>
-      <Link href={`/product/${module.slug}`}>Explore module <ArrowUpRight aria-hidden="true" size={18} /></Link>
+      <Link href={`/product/${module.slug}`} aria-label={`Explore ${module.name} module`}>Explore module <ArrowUpRight aria-hidden="true" size={18} /></Link>
     </article>
   );
 }

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useEffect, useState } from "react";
-import { SiteIcon } from "./site-icon";
 
 const slides = [
   { src: "/images/church-community-hero.jpg", alt: "Development mock image of a church community gathered in a bright sanctuary", eyebrow: "One shared foundation", title: "Church life, clearly organized" },
@@ -22,16 +21,12 @@ export function DemoHeroVisual() {
 
   return <div className="hero-visual hero-visual--rotating" aria-label="Development hero media preview">
     <div className="hero-community-photo hero-community-photo--rotating">
-      {slides.map((slide, index) => <Image key={slide.src} className={index === active ? "is-active" : ""} src={slide.src} alt={slide.alt} fill priority={index === 0} sizes="(max-width: 980px) 90vw, 44vw" />)}
+      {slides.map((slide, index) => <Image key={slide.src} className={index === active ? "is-active" : ""} src={slide.src} alt={slide.alt} fill loading="eager" fetchPriority={index === 0 ? "high" : "auto"} sizes="(max-width: 980px) 90vw, 44vw" />)}
       <span><small>{slides[active].eyebrow}</small><strong>{slides[active].title}</strong></span>
       <div className="hero-media-controls" aria-label="Choose hero image">
         {slides.map((slide, index) => <button key={slide.src} type="button" className={index === active ? "is-active" : ""} aria-label={`Show image ${index + 1}: ${slide.title}`} aria-pressed={index === active} onClick={() => setActive(index)} />)}
         <button className="hero-media-pause" type="button" aria-label={paused ? "Resume rotating hero images" : "Pause rotating hero images"} onClick={() => setPaused((value) => !value)}>{paused ? <Play aria-hidden="true" size={13} /> : <Pause aria-hidden="true" size={13} />}</button>
       </div>
-      <em>Development imagery</em>
     </div>
-    <div className="orbit-card orbit-card--one"><SiteIcon name="users" /><span><small>Community</small>Families connected</span></div>
-    <div className="orbit-card orbit-card--two"><SiteIcon name="fileCheck" /><span><small>Services</small>Requests followed</span></div>
-    <div className="orbit-card orbit-card--three"><SiteIcon name="shield" /><span><small>Trust</small>Access considered</span></div>
   </div>;
 }

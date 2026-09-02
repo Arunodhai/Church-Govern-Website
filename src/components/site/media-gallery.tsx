@@ -63,7 +63,7 @@ export function MediaGallery({ items, title = "Image gallery" }: { items: Galler
           <h2 className="sr-only" id="lightbox-title">{title}: {selected.alt}</h2>
           <button className="lightbox__close" type="button" onClick={close} aria-label="Close image viewer"><X aria-hidden="true" /></button>
           {items.length > 1 ? <button className="lightbox__previous" type="button" onClick={() => move(-1)} aria-label="Previous image"><ChevronLeft aria-hidden="true" /></button> : null}
-          <figure><div><Image src={selected.url} alt={selected.alt} fill priority sizes="95vw" /></div>{selected.caption ? <figcaption>{selected.caption}</figcaption> : null}</figure>
+          <figure><div><Image src={selected.url} alt={selected.alt} fill sizes="95vw" /></div>{selected.caption ? <figcaption>{selected.caption}</figcaption> : null}</figure>
           {items.length > 1 ? <button className="lightbox__next" type="button" onClick={() => move(1)} aria-label="Next image"><ChevronRight aria-hidden="true" /></button> : null}
         </dialog>
       ) : null}
