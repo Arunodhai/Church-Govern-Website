@@ -308,6 +308,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] `/`, `/about`, `/product`, `/blogs`, `/faq`, `/contact`, `/security-compliance`, `/studio`, and `/api/health` all returned successfully after deployment. The Studio route completed the expected redirect to Sanity authentication.
 - [x] `npm run check` passed: ESLint had 0 errors (1,672 warnings remain inside installed Impeccable tool copies), generated Next.js route types and strict TypeScript passed, 13 Vitest files/51 tests passed, and the Next.js 16.3.1 webpack production build completed.
 - [ ] Invite each named client tester with their own Sanity identity and the Editor role. Never share the owner's login or assign Administrator for content testing.
+- [x] Text-only page editing no longer triggers false image/alt-text validation. The shared image type is optional; alternative text becomes mandatory only when an asset is selected. All 53 documents passed error-level Sanity validation, the existing homepage draft remained intact, and the corrected hosted Studio was redeployed on 2026-09-02.
 
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run typecheck` — `next typegen && tsc --noEmit` passed locally through `npm run check`, 2026-08-15.

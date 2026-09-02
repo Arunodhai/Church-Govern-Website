@@ -27,12 +27,19 @@ export const imageWithAlt = defineType({
       title: "Alternative text",
       type: "string",
       description: "Describe the image for people who cannot see it. Do not repeat the caption.",
-      validation: (Rule) => Rule.required().min(3).max(180),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const image = context.parent as { asset?: unknown } | undefined;
+          if (!image?.asset) return true;
+          if (!value?.trim()) return "Alternative text is required when an image is selected.";
+          if (value.trim().length < 3) return "Alternative text must be at least 3 characters.";
+          if (value.length > 180) return "Alternative text must be 180 characters or fewer.";
+          return true;
+        }),
     }),
     defineField({ name: "caption", title: "Caption", type: "string", validation: (Rule) => Rule.max(240) }),
     defineField({ name: "credit", title: "Credit / license note", type: "string", validation: (Rule) => Rule.max(180) }),
   ],
-  validation: (Rule) => Rule.required(),
 });
 
 export const link = defineType({
