@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isMockContentMode, isMockEngagementMode, isMockOperationsMode, resolveAppEnvironment } from "./demo-mode";
+import { isMockContentMode, isMockEngagementMode, isMockOperationsMode, isSanityContentDemoMode, resolveAppEnvironment } from "./demo-mode";
 
 describe("deployment demo boundaries", () => {
   it("resolves explicit and Vercel preview environments conservatively", () => {
@@ -25,5 +25,11 @@ describe("deployment demo boundaries", () => {
     expect(isMockEngagementMode("development", "true", "true", "development")).toBe(true);
     expect(isMockEngagementMode("production", "true", "false", "staging")).toBe(false);
     expect(isMockEngagementMode("production", "true", "true", "production")).toBe(false);
+  });
+
+  it("allows provisional Sanity content only in an explicitly enabled non-production demo", () => {
+    expect(isSanityContentDemoMode("production", "true", "staging")).toBe(true);
+    expect(isSanityContentDemoMode("production", "false", "staging")).toBe(false);
+    expect(isSanityContentDemoMode("production", "true", "production")).toBe(false);
   });
 });

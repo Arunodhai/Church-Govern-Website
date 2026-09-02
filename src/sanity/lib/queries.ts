@@ -36,7 +36,7 @@ export const FOOTER_QUERY = defineQuery(`
 `);
 
 export const PAGE_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "page" && slug.current == $slug && contentStatus == "approved"][0]{
+  *[_type == "page" && slug.current == $slug && ($includeProvisional == true || contentStatus == "approved")][0]{
     _id, title, "slug": slug.current, pageKind, contentStatus,
     hero{eyebrow, heading, summary, image${IMAGE_PROJECTION},
       actions[]{label, internalPath, externalUrl, openInNewTab}},
@@ -47,15 +47,15 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
 `);
 
 export const PRODUCT_SUITES_QUERY = defineQuery(`
-  *[_type == "productSuite" && contentStatus == "approved"] | order(order asc){
+  *[_type == "productSuite" && ($includeProvisional == true || contentStatus == "approved")] | order(order asc){
     _id, title, "slug": slug.current, summary, order,
     heroImage${IMAGE_PROJECTION},
-    "moduleCount": count(*[_type == "productModule" && references(^._id) && contentStatus == "approved"])
+    "moduleCount": count(*[_type == "productModule" && references(^._id) && ($includeProvisional == true || contentStatus == "approved")])
   }
 `);
 
 export const PRODUCT_MODULES_QUERY = defineQuery(`
-  *[_type == "productModule" && contentStatus == "approved"] | order(order asc){
+  *[_type == "productModule" && ($includeProvisional == true || contentStatus == "approved")] | order(order asc){
     _id, name, "slug": slug.current, eyebrow, summary, overview, benefits, features, workflow, order,
     "suite": suite->{_id, title, "slug": slug.current},
     gallery[]${IMAGE_PROJECTION},
@@ -66,17 +66,17 @@ export const PRODUCT_MODULES_QUERY = defineQuery(`
 `);
 
 export const PRODUCT_SUITE_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "productSuite" && slug.current == $slug && contentStatus == "approved"][0]{
+  *[_type == "productSuite" && slug.current == $slug && ($includeProvisional == true || contentStatus == "approved")][0]{
     _id, title, "slug": slug.current, eyebrow, summary, body,
     heroImage${IMAGE_PROJECTION}, gallery[]${IMAGE_PROJECTION}, ${SEO_PROJECTION},
-    "modules": *[_type == "productModule" && suite._ref == ^._id && contentStatus == "approved"] | order(order asc){
+    "modules": *[_type == "productModule" && suite._ref == ^._id && ($includeProvisional == true || contentStatus == "approved")] | order(order asc){
       _id, name, "slug": slug.current, eyebrow, summary, order
     }
   }
 `);
 
 export const PRODUCT_MODULE_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "productModule" && slug.current == $slug && contentStatus == "approved"][0]{
+  *[_type == "productModule" && slug.current == $slug && ($includeProvisional == true || contentStatus == "approved")][0]{
     _id, name, "slug": slug.current, eyebrow, summary, overview, benefits, features, workflow,
     "suite": suite->{_id, title, "slug": slug.current},
     gallery[]${IMAGE_PROJECTION},
@@ -87,7 +87,7 @@ export const PRODUCT_MODULE_BY_SLUG_QUERY = defineQuery(`
 `);
 
 export const BLOG_POSTS_QUERY = defineQuery(`
-  *[_type == "blogPost" && contentStatus == "approved" && defined(slug.current) && publishedAt <= now()
+  *[_type == "blogPost" && ($includeProvisional == true || contentStatus == "approved") && defined(slug.current) && publishedAt <= now()
     && (!defined($category) || category->slug.current == $category)
     && (!defined($tag) || $tag in tags[]->slug.current)
     && (!defined($search) || title match ($search + "*") || excerpt match ($search + "*"))]
@@ -100,7 +100,7 @@ export const BLOG_POSTS_QUERY = defineQuery(`
 `);
 
 export const BLOG_POST_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "blogPost" && contentStatus == "approved" && slug.current == $slug && publishedAt <= now()][0]{
+  *[_type == "blogPost" && ($includeProvisional == true || contentStatus == "approved") && slug.current == $slug && publishedAt <= now()][0]{
     _id, title, "slug": slug.current, excerpt, publishedAt, authorName, body, featured, popular,
     thumbnail${IMAGE_PROJECTION},
     "category": category->{title, "slug": slug.current},
@@ -110,13 +110,13 @@ export const BLOG_POST_BY_SLUG_QUERY = defineQuery(`
 `);
 
 export const RECENT_BLOG_POSTS_QUERY = defineQuery(`
-  *[_type == "blogPost" && contentStatus == "approved" && publishedAt <= now()] | order(publishedAt desc)[0...$limit]{
+  *[_type == "blogPost" && ($includeProvisional == true || contentStatus == "approved") && publishedAt <= now()] | order(publishedAt desc)[0...$limit]{
     _id, title, "slug": slug.current, excerpt, publishedAt, thumbnail${IMAGE_PROJECTION}
   }
 `);
 
 export const POPULAR_BLOG_POSTS_QUERY = defineQuery(`
-  *[_type == "blogPost" && contentStatus == "approved" && popular == true && publishedAt <= now()] | order(publishedAt desc)[0...$limit]{
+  *[_type == "blogPost" && ($includeProvisional == true || contentStatus == "approved") && popular == true && publishedAt <= now()] | order(publishedAt desc)[0...$limit]{
     _id, title, "slug": slug.current, excerpt, publishedAt, thumbnail${IMAGE_PROJECTION}
   }
 `);
@@ -127,26 +127,26 @@ export const BLOG_TAXONOMY_QUERY = defineQuery(`{
 }`);
 
 export const FAQS_QUERY = defineQuery(`
-  *[_type == "faq" && contentStatus == "approved"] | order(category asc, order asc){
+  *[_type == "faq" && ($includeProvisional == true || contentStatus == "approved")] | order(category asc, order asc){
     _id, question, answer, category, order
   }
 `);
 
 export const TESTIMONIALS_QUERY = defineQuery(`
-  *[_type == "testimonial" && contentStatus == "approved" && publicationConsent == true]
+  *[_type == "testimonial" && ($includeProvisional == true || contentStatus == "approved") && publicationConsent == true]
   | order(order asc){
     _id, quote, personName, role, organization, order, portrait${IMAGE_PROJECTION}
   }
 `);
 
 export const GALLERY_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "gallery" && slug.current == $slug && contentStatus == "approved"][0]{
+  *[_type == "gallery" && slug.current == $slug && ($includeProvisional == true || contentStatus == "approved")][0]{
     _id, title, "slug": slug.current, description, images[]${IMAGE_PROJECTION}
   }
 `);
 
 export const GALLERIES_QUERY = defineQuery(`
-  *[_type == "gallery" && contentStatus == "approved"] | order(title asc){
+  *[_type == "gallery" && ($includeProvisional == true || contentStatus == "approved")] | order(title asc){
     _id, title, "slug": slug.current, description, images[]${IMAGE_PROJECTION}
   }
 `);

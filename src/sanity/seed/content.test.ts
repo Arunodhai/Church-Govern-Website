@@ -16,6 +16,9 @@ describe("Sanity source migration", () => {
     expect(count("testimonial")).toBe(0);
     expect(new Set(documents.map((document) => document._id)).size).toBe(documents.length);
     expect(documents.filter((document) => ["page", "productSuite", "productModule", "blogPost", "faq"].includes(document._type)).every((document) => document.contentStatus === "provisional")).toBe(true);
+    expect(documents.find((document) => document._id === "page-home")?.hero).toMatchObject({
+      heading: "More time for people. Less time on paperwork.",
+    });
   });
 
   it("rejects insecure production site URLs", () => {

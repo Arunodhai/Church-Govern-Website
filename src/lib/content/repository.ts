@@ -1,6 +1,6 @@
 import "server-only";
 
-import { isMockEngagementMode } from "@/lib/demo-mode";
+import { isMockEngagementMode, isSanityContentDemoMode } from "@/lib/demo-mode";
 import { createSupabaseAdminClient } from "@/lib/supabase/server";
 import { sanityEnv } from "@/sanity/env";
 import { fetchSanity } from "@/sanity/lib/fetch";
@@ -60,9 +60,11 @@ export type {
 } from "./types";
 
 export const isMockContentEnabled = shouldUseMockContent();
+const isSanityDemoEnabled = isSanityContentDemoMode();
+const sanityVisibilityParams = { includeProvisional: isSanityDemoEnabled };
 
 const FULL_BLOG_POSTS_QUERY = `
-  *[_type == "blogPost" && contentStatus == "approved" && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc){
+  *[_type == "blogPost" && ($includeProvisional == true || contentStatus == "approved") && defined(slug.current) && publishedAt <= now()] | order(publishedAt desc){
     _id, title, "slug": slug.current, excerpt, publishedAt, authorName, body, featured, popular,
     thumbnail{..., asset->{_id, url, metadata{dimensions}}},
     "category": category->{title, "slug": slug.current},
@@ -75,7 +77,7 @@ const FULL_BLOG_POSTS_QUERY = `
 async function sanityRead<T>(query: string, params: Record<string, unknown> = {}): Promise<T | null> {
   if (!sanityEnv.isConfigured) return null;
   try {
-    return await fetchSanity<T>(query, params, { revalidate: 300, tags: ["sanity-content"] });
+    return await fetchSanity<T>(query, params, { revalidate: isSanityDemoEnabled ? 0 : 300, tags: ["sanity-content"] });
   } catch (error) {
     console.error("Sanity public content read failed.", error);
     return null;
@@ -84,14 +86,24 @@ async function sanityRead<T>(query: string, params: Record<string, unknown> = {}
 
 export async function getPublicPage(slug: string): Promise<PublicPage | null> {
   if (isMockContentEnabled) return mockPages.find((page) => page.slug === slug) ?? null;
-  const page = await sanityRead<SanityRecord | null>(PAGE_BY_SLUG_QUERY, { slug });
+  const page = await sanityRead<SanityRecord | null>(PAGE_BY_SLUG_QUERY, { slug, ...sanityVisibilityParams });
   return page ? mapSanityPage(page) : null;
 }
 
 export async function getPublicModules(): Promise<PublicModule[]> {
   if (isMockContentEnabled) return mockModules;
-  const rows = await sanityRead<SanityRecord[]>(PRODUCT_MODULES_QUERY);
-  if (rows?.length) return rows.map(mapSanityModule);
+  const rows = await sanityRead<SanityRecord[]>(PRODUCT_MODULES_QUERY, sanityVisibilityParams);
+  if (rows?.length) return rows.map((row) => {
+    const productModule = mapSanityModule(row);
+    if (!isSanityDemoEnabled || productModule.screenshots.length) return productModule;
+    return {
+      ...productModule,
+      screenshots: [
+        { id: `sanity-demo-${productModule.slug}-overview`, url: "/images/demo/module-overview.svg", alt: `Illustrative demo overview for ${productModule.name}`, caption: "Development demo UI concept — not a product screenshot", width: 1600, height: 1000 },
+        { id: `sanity-demo-${productModule.slug}-workflow`, url: "/images/demo/module-workflow.svg", alt: `Illustrative demo workflow for ${productModule.name}`, caption: "Development demo UI concept — replace with approved product media", width: 1600, height: 1000 },
+      ],
+    };
+  });
   return [];
 }
 
@@ -101,8 +113,20 @@ export async function getPublicModule(slug: string): Promise<PublicModule | null
 
 export async function getPublicBlogPosts(): Promise<PublicBlogPost[]> {
   if (isMockContentEnabled) return mockBlogs;
-  const rows = await sanityRead<SanityRecord[]>(FULL_BLOG_POSTS_QUERY);
-  if (rows?.length) return rows.map(mapSanityBlogPost);
+  const rows = await sanityRead<SanityRecord[]>(FULL_BLOG_POSTS_QUERY, sanityVisibilityParams);
+  if (rows?.length) return rows.map((row, index) => {
+    const post = mapSanityBlogPost(row);
+    if (!isSanityDemoEnabled || post.media) return post;
+    return {
+      ...post,
+      media: {
+        id: `sanity-demo-blog-${index + 1}`,
+        url: index % 2 === 0 ? "/images/records-digitization.jpg" : "/images/church-community-hero.jpg",
+        alt: index % 2 === 0 ? "Development demo thumbnail showing historical records" : "Development demo thumbnail showing a church community",
+        caption: "Development demo thumbnail — replace before production",
+      },
+    };
+  });
   return [];
 }
 
@@ -112,14 +136,14 @@ export async function getPublicBlogPost(slug: string): Promise<PublicBlogPost | 
 
 export async function getPublicFaqs(): Promise<PublicFaq[]> {
   if (isMockContentEnabled) return mockFaqs;
-  const rows = await sanityRead<SanityRecord[]>(FAQS_QUERY);
+  const rows = await sanityRead<SanityRecord[]>(FAQS_QUERY, sanityVisibilityParams);
   if (rows?.length) return rows.map(mapSanityFaq);
   return [];
 }
 
 export async function getPublicTestimonials(): Promise<PublicTestimonial[]> {
   if (isMockContentEnabled) return mockTestimonials;
-  const rows = await sanityRead<SanityRecord[]>(TESTIMONIALS_QUERY);
+  const rows = await sanityRead<SanityRecord[]>(TESTIMONIALS_QUERY, sanityVisibilityParams);
   return rows?.map(mapSanityTestimonial) ?? [];
 }
 
@@ -133,7 +157,7 @@ export async function getPublicNavigation(location: PublicNavigationItem["locati
 
 export async function getPublicGalleries(): Promise<PublicGallery[]> {
   if (isMockContentEnabled) return mockGalleries;
-  const rows = await sanityRead<SanityRecord[]>(GALLERIES_QUERY);
+  const rows = await sanityRead<SanityRecord[]>(GALLERIES_QUERY, sanityVisibilityParams);
   return rows?.map(mapSanityGallery) ?? [];
 }
 

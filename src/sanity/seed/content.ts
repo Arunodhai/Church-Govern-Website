@@ -17,13 +17,13 @@ const textBlock = (text: string, key: string, style = "normal") => ({
 });
 
 const pageDefinitions = [
-  ["home", "Home", "home"],
-  ["about", "About Church Govern", "about"],
-  ["product", "Product", "product"],
-  ["blogs", "Blogs", "blogs"],
-  ["faq", "Frequently asked questions", "faq"],
-  ["contact", "Contact", "contact"],
-  ["security-compliance", "Security and compliance", "security-compliance"],
+  { slug: "home", pageKind: "home", title: "Home", heading: "More time for people. Less time on paperwork.", summary: "Church Govern brings administration, records and member services into one clear digital environment.", metaTitle: "Church administration, thoughtfully connected", metaDescription: "Church Govern connects church administration, trusted records and member services in one digital platform." },
+  { slug: "about", pageKind: "about", title: "About Church Govern", heading: "Technology should strengthen the work that already matters.", summary: "A dependable digital foundation shaped around community, continuity and responsible stewardship.", metaTitle: "About Church Govern", metaDescription: "Learn why Church Govern is being shaped around careful administration, community and responsible stewardship." },
+  { slug: "product", pageKind: "product", title: "Product", heading: "One connected foundation. Two focused experiences.", summary: "A coherent administration experience for church teams and a considered service experience for members.", metaTitle: "Church Govern product", metaDescription: "Explore the Office Suite, Member Suite and Church Govern product modules." },
+  { slug: "blogs", pageKind: "blogs", title: "Blogs", heading: "Practical ideas for churches navigating digital change.", summary: "Considered guidance on administration, governance, records, technology and member engagement.", metaTitle: "Church Govern insights", metaDescription: "Practical thinking on church administration, technology, governance and records." },
+  { slug: "faq", pageKind: "faq", title: "Frequently asked questions", heading: "Clear answers for an important decision.", summary: "Start with common questions about the product, implementation, digitization and support.", metaTitle: "Church Govern FAQ", metaDescription: "Answers about Church Govern, implementation, security, digitization and support." },
+  { slug: "contact", pageKind: "contact", title: "Contact", heading: "Start with your church, not a sales script.", summary: "Choose the conversation that best fits your need. The details are used only to prepare and respond.", metaTitle: "Contact Church Govern", metaDescription: "Request a Church Govern demonstration, digitization assessment or general conversation." },
+  { slug: "security-compliance", pageKind: "security-compliance", title: "Security and compliance", heading: "Trust begins with clear responsibility.", summary: "Technical safeguards need accountable access, transparent practices and deliberate data stewardship.", metaTitle: "Security and compliance", metaDescription: "The security, privacy and governance principles intended for Church Govern.", noIndex: true },
 ] as const;
 
 export function createSanitySeedDocuments({ siteUrl }: SeedOptions): SanitySeedDocument[] {
@@ -35,12 +35,23 @@ export function createSanitySeedDocuments({ siteUrl }: SeedOptions): SanitySeedD
   const categories = [...new Set(blogPosts.map((post) => post.category))];
 
   return [
-    ...pageDefinitions.map(([slug, title, pageKind]) => ({
-      _id: `page-${slug}`,
+    ...pageDefinitions.map((page) => ({
+      _id: `page-${page.slug}`,
       _type: "page",
-      title,
-      slug: { _type: "slug", current: slug },
-      pageKind,
+      title: page.title,
+      slug: { _type: "slug", current: page.slug },
+      pageKind: page.pageKind,
+      hero: {
+        _type: "hero",
+        heading: page.heading,
+        summary: page.summary,
+      },
+      seo: {
+        _type: "seo",
+        metaTitle: page.metaTitle,
+        metaDescription: page.metaDescription,
+        noIndex: "noIndex" in page ? page.noIndex : false,
+      },
       contentStatus: "provisional",
     })),
     {

@@ -32,6 +32,15 @@ export function isMockOperationsMode(
   return environment === "development";
 }
 
+export function isSanityContentDemoMode(
+  nodeEnv: string | null | undefined = process.env.NODE_ENV,
+  flag: string | null | undefined = process.env.SANITY_CONTENT_DEMO_MODE,
+  appEnv: string | null | undefined = process.env.APP_ENV,
+  vercelEnv: string | null | undefined = process.env.VERCEL_ENV,
+) {
+  return resolveAppEnvironment(appEnv, vercelEnv, nodeEnv) !== "production" && flag === "true";
+}
+
 export function isMockEngagementMode(
   nodeEnv: string | null | undefined = process.env.NODE_ENV,
   contentFlag: string | null | undefined = process.env.USE_MOCK_CONTENT,
