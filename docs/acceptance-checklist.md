@@ -146,7 +146,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] `npm run check` passed after the redesign: ESLint, generated Next.js route types plus strict TypeScript, 13 Vitest files/50 tests, and the Next.js 16.3.1 webpack production build.
 - [x] Desktop browser checks covered Home, About, Product, one module, Blogs, one article, FAQ, Contact, Security/Compliance, Privacy, Terms, Accessibility and the authenticated operations dashboard at 1280 by 720 without horizontal overflow.
 - [x] Playwright checks at 390 by 844 confirmed no horizontal overflow on Home, Product and Contact. The home first viewport contains the proposition, both CTAs and all three trust points; Product search, Contact hash/state retention, FAQ filtering/counts and mobile-menu focus/scroll behavior passed.
-- [ ] The redesigned code has not yet been committed, pushed, or redeployed. The current Vercel Preview still shows the prior visual system until a new build is checked.
+- [x] The redesigned code is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 - [ ] Automated contrast tooling, screen-reader testing, 200% zoom/reflow, Safari/Firefox/Edge and post-redesign Lighthouse/Core Web Vitals remain release gates.
 
 ### Owner-approved chartreuse/mint palette evidence — 2026-08-22
@@ -196,7 +196,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Hero captions no longer compete with media controls and testimonial cards were replaced with a restrained ruled layout. Both rotating hero assets render with `loading="eager"`; the initial slide also has `fetchpriority="high"`.
 - [ ] Next.js development mode still emits an LCP loading warning for the initial hero despite the live image element carrying `loading="eager"` and `fetchpriority="high"`. Treat this as a framework-development diagnostic to recheck with production Lighthouse rather than as proof of a production performance defect.
 - [x] Post-redesign `npm run check` passed: ESLint reported no errors (1,672 warnings originate in installed Impeccable tool copies), generated Next.js route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js 16.3.1 webpack production build completed.
-- [ ] The homepage redesign is local only until it is committed, pushed and verified on the Vercel Preview.
+- [x] The homepage redesign is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Owner-selected homepage hero artwork — 2026-08-22
 
@@ -225,7 +225,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Product suite switching updated the hash and showed the expected seven Member Suite modules; blog keyword search returned one matching article; the Security FAQ filter returned two questions and an answer expanded; Contact intent switching exposed the digitization assessment panel and updated the hash.
 - [x] All four routes were inspected at 1440 by 1000 and 390 by 844, including populated workspace states. Each mobile route reported `scrollWidth === clientWidth`, and the fresh browser session reported no errors or warnings.
 - [x] `npm run check` passed after the polish: ESLint reported no errors (1,672 warnings originate in installed Impeccable tool copies), generated Next.js route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js 16.3.1 webpack production build completed.
-- [ ] This route polish is local only until it is committed, pushed and verified on the Vercel Preview.
+- [x] This route polish is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Focused Contact-page refinement evidence — 2026-08-22
 
@@ -234,7 +234,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] The tablist now supports Arrow keys plus Home and End with roving focus. Browser verification moved focus and selection from `#digitization` to `#general-enquiry` and kept the URL hash synchronized.
 - [x] The active demonstration, digitization and general-enquiry layouts were inspected at 1440 by 1000, 1024 by 768 and 390 by 844. Tablet and mobile reported `scrollWidth === innerWidth`, with no horizontal overflow.
 - [x] Focused `npm run typecheck` passed. Full `npm run check` then passed with no ESLint errors (1,672 warnings originate in installed Impeccable tool copies), generated route types and strict TypeScript, 13 Vitest files/50 tests, and the Next.js 16.3.1 webpack production build.
-- [ ] This Contact refinement is local only until it is committed, pushed and verified on the Preview URL.
+- [x] This Contact refinement is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Development-only page-strip removals — 2026-08-22
 
@@ -254,7 +254,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Existing Sanity FAQ reads, approved wording, FAQPage structured data, metadata and contact destination remain unchanged; no product, pricing, security, compliance or organizational claim was introduced.
 - [x] Browser interaction checks covered keyword search, Security filtering, answer expansion, no-results handling and clear-state recovery. The page reported no horizontal overflow at 1280 by 720 and 390 by 844; the secondary hero guide is intentionally omitted on phone and tablet widths.
 - [x] `npm run check` passed after the refinement: ESLint reported no errors (1,672 warnings are confined to installed Impeccable copies), generated route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js 16.3.1 webpack production build completed.
-- [ ] This FAQ refinement is local only until it is committed, pushed and verified on the Preview URL.
+- [x] This FAQ refinement is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Insights UI audit and polish — 2026-08-23
 
@@ -265,7 +265,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] The targeted static Impeccable detector reported no route-specific finding in the Blogs components. Its six warnings point to earlier shared stylesheet rules outside the `/blogs` layer; URL scanning could not run because the optional Puppeteer dependency is not installed, so the live browser audit supplied the rendered evidence instead.
 - [x] `npm run check` passed after the polish: ESLint reported no errors (1,672 warnings are confined to installed Impeccable copies), generated route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js 16.3.1 webpack production build completed.
 - [ ] Promote repeated Blogs-specific neutral/chartreuse values into shared design tokens during a later design-system extraction; this does not block the current single-theme surface.
-- [ ] This Insights refinement is local only until it is committed, pushed and verified on the Preview URL.
+- [x] This Insights refinement is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Insight article redesign — 2026-08-23
 
@@ -273,7 +273,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Existing Sanity article fields, authors, dates, summaries, body sections, media and metadata remain intact. Supabase-backed ratings and moderated comments retain their existing API routes, validation, loading, success and error behavior; no article claim or identity was invented.
 - [x] All six provisional article routes rendered their expected title and content sections in the live browser with no horizontal overflow. Representative checks passed at 1280 by 800, 820 by 900 and 390 by 844; the mobile table of contents opened with the expected section links, all five rating controls measured 44 by 44 pixels, and the comment fields met the 44-pixel minimum interaction height.
 - [x] Browser inspection reported no console errors. `npm run check` passed after the redesign: ESLint reported no errors, generated route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js webpack production build completed.
-- [ ] The article redesign is local only until it is committed, pushed and verified on the Preview URL.
+- [x] The article redesign is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Homepage insights refinement — 2026-08-23
 
@@ -282,7 +282,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Browser inspection passed at 1440 by 900, 820 by 900 and 390 by 844. Desktop uses a full-width split spotlight followed by three equal stories; tablet retains the split spotlight above a two-column supporting layout; phone stacks the spotlight and renders compact supporting rows without horizontal overflow. All article actions measured 44 by 44 pixels on phone, and the fresh browser session reported no errors or warnings.
 - [x] The section uses the established white/charcoal system with one deliberate chartreuse editorial panel, a restrained numerical index and strong image rhythm rather than a repetitive container wall.
 - [x] `npm run check` passed after the refinement: ESLint reported no errors (1,672 warnings are confined to installed Impeccable copies), generated route types and strict TypeScript passed, 13 Vitest files/50 tests passed, and the Next.js 16.3.1 webpack production build completed.
-- [ ] This homepage refinement is local only until it is committed, pushed and verified on the Preview URL.
+- [x] This homepage refinement is included in the verified 2026-09-02 Vercel Preview deployment recorded below.
 
 ### Homepage motion and polish — 2026-08-25
 
@@ -298,7 +298,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] `npm run check` stages were run individually and each exited 0: ESLint reported no errors and all 1,673 warnings resolve to installed agent-tool directories (`.agent`, `.agents`, `.claude`, `.cursor`, `.gemini`, `.hermes`, `.kiro`, `.opencode`, `.pi`, `.qoder`, `.vibe`) with zero findings in `src/`; generated route types and strict TypeScript passed; 13 Vitest files and 50 tests passed; the Next.js 16.3.1 webpack production build compiled successfully and collected all routes.
 - [ ] Motion was verified in one Chromium-family browser only. Safari, Firefox and Edge behavior for the reveal layer, and post-change Lighthouse/Core Web Vitals, remain release gates.
 - [ ] Screen-reader, automated contrast and 200% zoom/reflow testing were not repeated for this change.
-- [ ] This motion polish is local only until it is committed, pushed and verified on the Preview URL.
+- [x] The accumulated visual and motion polish was committed as `4845c05`, pushed to `origin/main`, deployed as Vercel Preview `dpl_FEF79fhbsEPr6o31do3BExCM7noY`, and assigned to the stable staging URL on 2026-09-02. The homepage rendered its expected hero without browser console errors; HTTP checks returned 200 for `/` and `/api/health`, while `/studio` returned the expected 307 to the hosted Sanity Studio.
 
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run typecheck` — `next typegen && tsc --noEmit` passed locally through `npm run check`, 2026-08-15.
