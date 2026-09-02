@@ -98,7 +98,7 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] The Studio production bundle built, its schema manifest deployed, and the hosted URL completed Sanity's authenticated dashboard handoff.
 - [x] After the local environment reload, `/studio` returned HTTP 307 to the hosted Studio and `/` returned HTTP 200.
 - [x] Post-connection `npm run check` passed: ESLint, generated route types plus strict TypeScript, 12 Vitest files/45 tests, and the Next.js webpack production build.
-- [ ] The private dataset has no website read token, all seeded editorial records remain provisional, and no approved Sanity record has yet been rendered publicly. Mock mode remains enabled for local testing.
+- [x] The private development dataset is connected to the no-index Vercel Preview with a server-only Viewer token expiring 2026-10-02. Preview deliberately renders published provisional records for the owner-approved CMS demo; production continues to require approved content and cannot enable this staging-only mode.
 
 ### Complete development-demo evidence — 2026-08-21
 
@@ -299,6 +299,15 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [ ] Motion was verified in one Chromium-family browser only. Safari, Firefox and Edge behavior for the reveal layer, and post-change Lighthouse/Core Web Vitals, remain release gates.
 - [ ] Screen-reader, automated contrast and 200% zoom/reflow testing were not repeated for this change.
 - [x] The accumulated visual and motion polish was committed as `4845c05`, pushed to `origin/main`, deployed as Vercel Preview `dpl_FEF79fhbsEPr6o31do3BExCM7noY`, and assigned to the stable staging URL on 2026-09-02. The homepage rendered its expected hero without browser console errors; HTTP checks returned 200 for `/` and `/api/health`, while `/studio` returned the expected 307 to the hosted Sanity Studio.
+
+### Live Sanity-to-Vercel editorial demo — 2026-09-02
+
+- [x] Commit `a0985ed` was pushed to `origin/main`, deployed as `dpl_CwgwriThVuVQoPFutdXeWe9mWigd`, and assigned to <https://church-govern-staging.vercel.app>.
+- [x] Preview uses `USE_MOCK_CONTENT=false`, a sensitive server-only Viewer token for private dataset `development`, and the staging-only `SANITY_CONTENT_DEMO_MODE=true` guard. Production rejects the provisional-content mode regardless of the flag.
+- [x] A reversible end-to-end test changed the published `page-home` hero summary, confirmed the unique change in the stable Vercel homepage response, restored the exact original summary, and confirmed the marker disappeared.
+- [x] `/`, `/about`, `/product`, `/blogs`, `/faq`, `/contact`, `/security-compliance`, `/studio`, and `/api/health` all returned successfully after deployment. The Studio route completed the expected redirect to Sanity authentication.
+- [x] `npm run check` passed: ESLint had 0 errors (1,672 warnings remain inside installed Impeccable tool copies), generated Next.js route types and strict TypeScript passed, 13 Vitest files/51 tests passed, and the Next.js 16.3.1 webpack production build completed.
+- [ ] Invite each named client tester with their own Sanity identity and the Editor role. Never share the owner's login or assign Administrator for content testing.
 
 - [x] `npm run lint` — passed locally through `npm run check`, 2026-08-15.
 - [x] `npm run typecheck` — `next typegen && tsc --noEmit` passed locally through `npm run check`, 2026-08-15.

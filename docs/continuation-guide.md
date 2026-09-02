@@ -1,6 +1,6 @@
 # Continuation guide
 
-Last reconciled: 2026-08-25.
+Last reconciled: 2026-09-02.
 
 ## Start here
 
@@ -61,7 +61,7 @@ The user's Sanity account is connected for development testing:
 
 The seed includes 7 pages, 2 suites, 17 modules, 6 blogs, 6 blog categories, 10 FAQs, navigation, footer settings, and site settings. It contains no testimonials or approved records. Sanity also creates its own system schema/retention records, so the dataset's raw total is higher than the 51 application documents.
 
-Local `.env.local` contains the public project, dataset, API-version, and Studio URL values. It intentionally does not contain a Sanity read token. The dataset is private, so server-side website reads require `SANITY_API_READ_TOKEN`; alternatively the owner may explicitly change dataset visibility after reviewing that tradeoff. Keep `USE_MOCK_CONTENT=true` until that access decision is made and selected records are reviewed and approved.
+Local `.env.local` contains the public project, dataset, API-version, and Studio URL values. It intentionally does not contain a Sanity read token. The private dataset is now connected to Vercel Preview through a server-only Viewer token that expires on 2026-10-02. Preview uses `USE_MOCK_CONTENT=false` and `SANITY_CONTENT_DEMO_MODE=true`, so published provisional records can be demonstrated without weakening the production approval filter. The token value is stored only as a sensitive Vercel variable and must never be documented or committed.
 
 For another environment, set:
 
@@ -100,7 +100,7 @@ Do not run the seed against an account you do not own or without confirming the 
 
 ## Remaining launch blockers
 
-1. Sanity is connected to the user's test project, but production SBL ownership is not established. The private dataset still needs a server-only read-token decision, approved media, and reviewed/approved records before public Sanity rendering can replace mock mode.
+1. Sanity is connected to the user's test project and Vercel Preview, but production SBL ownership is not established. Preview may render published provisional records for the explicitly approved client demo; production still requires approved media, reviewed/approved records, a client-owned least-privilege token, and removal of `SANITY_CONTENT_DEMO_MODE`.
 2. Final Church Govern/FamilyaConnect/SBL relationship copy, mission/vision, legal/privacy language, product screenshots, testimonials/consent, and security/compliance assertions are not approved.
 3. Resend sender/recipient configuration and live delivery need verification; an API key alone is not delivery evidence.
 4. Hostinger staging and production deployments, DNS/SSL, logs, monitoring, backups, and rollback need evidence.
@@ -199,7 +199,11 @@ Do not run the seed against an account you do not own or without confirming the 
 
 The accumulated public/admin redesign and homepage motion work was committed as `4845c05`, pushed to `origin/main`, and deployed directly to Vercel Preview on 2026-09-02. Deployment `dpl_FEF79fhbsEPr6o31do3BExCM7noY` is assigned to <https://church-govern-staging.vercel.app>. The stable homepage and health endpoint returned HTTP 200, `/studio` returned a 307 to the configured hosted Studio, and the rendered homepage showed the expected hero with no browser console errors. The fourteen local agent-tool directories and local design captures are now ignored; the duplicate `main img.png` was not committed.
 
-The next safe task is a least-privilege client Sanity trial. Invite each tester's own email to project `vc24qe42`; assign Viewer for review-only access or Editor when they must create, edit, and publish test records. Do not distribute a shared Sanity username/password or Administrator access. The stable Vercel demo intentionally still uses mock editorial content, so Sanity edits will not appear there. For an end-to-end editorial demo, create a separate Preview using `USE_MOCK_CONTENT=false`, a server-only Viewer read token for the private `development` dataset, and a deliberately approved subset of test records; then verify publish, unpublish, caching, routes, metadata, images, and empty states before sharing that Preview.
+On 2026-09-02 the owner explicitly approved an end-to-end client CMS demo on the stable Vercel Preview. Commit `a0985ed` was pushed to `origin/main`, deployed as `dpl_CwgwriThVuVQoPFutdXeWe9mWigd`, and assigned to <https://church-govern-staging.vercel.app>. The private `development` dataset is read with one server-only Viewer token expiring 2026-10-02. `SANITY_CONTENT_DEMO_MODE=true` is guarded against `APP_ENV=production`, includes published provisional records only in staging, and disables Sanity caching so a browser refresh sees a published edit immediately. The safe `npm run sanity:prepare-demo` task fills only missing page hero/SEO fields and does not overwrite editor changes.
+
+A reversible live test changed the published `page-home` hero summary, fetched the stable Vercel homepage and found the unique marker, restored the exact original value, and fetched again to confirm restoration. `/`, `/about`, `/product`, `/blogs`, `/faq`, `/contact`, `/security-compliance`, `/studio`, and `/api/health` all returned successfully. `/studio` completed the expected redirect into Sanity authentication. `npm run check` passed with no lint errors, generated route types and strict TypeScript, 13 Vitest files/51 tests, and the Next.js 16.3.1 webpack production build.
+
+The next safe task is to invite each client tester's own email to project `vc24qe42` as Editor when they must create, edit, and publish test records. Do not distribute a shared Sanity username/password or Administrator access. Explain that only Sanity-modeled/rendered fields update the website; code-owned layout and decorative sections do not become editable automatically. Before 2026-10-02, rotate or replace the staging Viewer token if the demo continues.
 
 Separately, confirm the QA notification arrived at the temporary recipient, rotate the Resend key because it was pasted into chat, and replace the sensitive Vercel value. When real material arrives, replace mock copy/media/testimonials and approve records in Sanity; then decide private-dataset access, disable editorial mock mode, verify public Sanity rendering, configure analytics, and run the full screen-reader/cross-browser suite before Hostinger staging. Establish SBL ownership before production.
 
