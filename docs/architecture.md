@@ -4,6 +4,10 @@
 
 The revised proposal supersedes the earlier custom-Supabase-CMS and Vercel hosting decisions. It does not remove the detailed website, blog, moderation, lead, SEO, accessibility, or analytics requirements.
 
+### Pending architecture change — 2026-09-04
+
+The owner reports that the client now wants WordPress as a headless CMS with the existing Next.js frontend. The code and deployment shown below are still Sanity-backed; WordPress has not been implemented. The intended migration changes only the editorial CMS boundary: WordPress should replace Sanity for editorial content and media, while Next.js, Supabase operational data/Auth, Resend, public routes, and the separate `/admin` console remain. Treat this as pending until the updated client decision is recorded and the WordPress staging flow passes acceptance.
+
 ```mermaid
 flowchart LR
   Visitor[Public visitor] --> Web[Next.js on Hostinger Web Apps]

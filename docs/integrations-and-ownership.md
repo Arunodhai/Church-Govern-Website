@@ -10,6 +10,7 @@ No integration is production-ready until the account owner, configuration owner,
 | Web hosting | Hostinger Web Apps | SBL | TBD | Record plan, application, Node 22 runtime, developer access, billing, logs, and rollback owner. |
 | Stakeholder preview | Vercel Preview | Developer-owned temporary project | Arunodhai | No-index staging only; migrate or retire after Hostinger acceptance. |
 | Editorial CMS/media | Sanity | SBL | TBD | SBL-owned organization/project/datasets, editors, publishers, billing, asset policy, and offboarding. |
+| Requested replacement editorial CMS/media | WordPress, headless | Ownership/hosting TBD | TBD | Requested 2026-09-04; not implemented. Confirm staging host, billing, plugins, roles, backups, API credentials, and offboarding before migration. |
 | Operational database/auth | Supabase | SBL | TBD | Separate staging/production, region, plan, backups, RLS matrix, and operations administrators. |
 | Transactional email | Resend | SBL | TBD | Verified sender domain, recipients, delivery/retry alerts, billing, and offboarding. |
 | Analytics | Google Analytics 4 | TBD | TBD | Client-owned property, measurement ID, consent mode, access list |

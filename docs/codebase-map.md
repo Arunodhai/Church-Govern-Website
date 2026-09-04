@@ -2,6 +2,8 @@
 
 Use this map after reading `AGENTS.md` and `continuation-guide.md`. It describes the current implementation, not a future proposal.
 
+The client-requested WordPress headless migration reported on 2026-09-04 is not represented in this map because it has not been implemented. The primary migration seam is the typed repository under `src/lib/content/`; add a WordPress adapter there before changing page composition.
+
 ## Primary directories
 
 | Path | Responsibility |

@@ -2,6 +2,7 @@
 
 Start with the requirements and [architecture](architecture.md), then use the document matching the work:
 
+- [../HANDOFF.md](../HANDOFF.md): concise onboarding, current-vs-target state, clone steps, and the WordPress migration sequence
 - [database-and-security.md](database-and-security.md): migrations, authentication, RLS, storage, and data verification
 - [content-and-scope.md](content-and-scope.md): complete launch scope, future scope, and placeholder/content approval policy
 - [integrations-and-ownership.md](integrations-and-ownership.md): analytics, email, accounts, and responsible owners

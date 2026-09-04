@@ -330,6 +330,22 @@ The 2026-08-15 results below predate the Sanity/Resend/Hostinger migration and a
 - [x] Admin `.admin-shell` typography/contrast fix is visually checked on dashboard, lead lists/details, moderation, analytics, and audit at desktop and 390 by 844.
 - [ ] Studio and public views are checked at desktop and 390 by 844 for focus, contrast, clipping, overflow, and honest empty/error states.
 
+## WordPress headless migration gate — requested 2026-09-04
+
+- [ ] Obtain written confirmation that the WordPress request supersedes the Sanity CMS choice in the revised proposal.
+- [ ] Record WordPress staging ownership/hosting, content types and fields, REST or GraphQL choice, required plugins, editor roles, media rules, SEO mapping, draft preview, webhook/revalidation, backups, and rollback.
+- [ ] Implement WordPress behind the existing typed content repository without changing public routes or the Supabase operational boundary.
+- [ ] Migrate provisional content idempotently and preserve stable blog slugs used by Supabase comments and ratings.
+- [ ] Verify WordPress edit and publish changes on the Next.js staging site for pages, modules, blogs, FAQs, navigation, galleries/media, metadata, sitemap, search, related content, and empty/error states.
+- [ ] Verify least-privilege client editor access without sharing administrator credentials or exposing WordPress application passwords to browser bundles.
+- [ ] Remove Sanity only after equivalent WordPress behavior, rollback, and stakeholder acceptance are documented.
+
+### Handoff evidence — 2026-09-04
+
+- [x] Added `HANDOFF.md` and reconciled `README.md`, `AGENTS.md`, architecture, decisions, codebase map, continuation, integration ownership, and acceptance documentation around the implemented Sanity baseline and the unimplemented WordPress request.
+- [x] `git diff --check` passed, and a tracked-file scan found none of the credentials previously shared in conversation or the checked common token patterns.
+- [x] `npm run check` exited 0: ESLint had 0 errors (warnings remain only in ignored local agent-tool directories), generated route types and strict TypeScript passed, 13 Vitest files/51 tests passed, and the Next.js 16.3.1 webpack production build completed.
+
 ## Integrated local browser evidence — 2026-08-14
 
 - All 32 tested public routes returned HTTP 200: core pages, all 17 module details, all six seeded blog details, sitemap, and robots.

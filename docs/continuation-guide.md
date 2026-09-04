@@ -1,6 +1,14 @@
 # Continuation guide
 
-Last reconciled: 2026-09-02.
+Last reconciled: 2026-09-04.
+
+## Immediate handoff status
+
+The current repository and deployed staging environment are functional and Sanity-backed. On 2026-09-04 the owner reported a newer client request to replace Sanity with WordPress as a headless CMS while preserving the existing Next.js frontend. No WordPress integration has been implemented or verified. This creates a documented conflict with the Sanity-based revised proposal; confirm the client's updated scope in writing before treating it as the production architecture.
+
+Use `HANDOFF.md` for the ordered migration plan. Keep the typed `src/lib/content/` repository contract and current Sanity adapter intact while adding a WordPress adapter. Preserve Supabase for operational data and `/admin`, and preserve Resend for notifications. Do not delete the working Sanity implementation until WordPress staging passes equivalent route, metadata, media, search, sitemap, engagement, access, and publishing checks.
+
+The documentation-only handoff update was verified on 2026-09-04 with `git diff --check`, a tracked-file scan for the credentials previously shared in conversation and common token patterns, and `npm run check`. The check exited 0: ESLint reported 0 errors (warnings are confined to ignored local agent-tool directories), generated route types and strict TypeScript passed, all 13 Vitest files/51 tests passed, and the Next.js 16.3.1 webpack production build completed.
 
 ## Start here
 
@@ -196,6 +204,10 @@ Do not run the seed against an account you do not own or without confirming the 
 - The hosted Studio initially rendered Sanity's `projectId: missing` error because its standalone Vite build could not expose `NEXT_PUBLIC_SANITY_*`. The config now accepts `SANITY_STUDIO_*`, the local bundle includes `vc24qe42`/`development`, and Studio was successfully redeployed. A clean browser reached Sanity authentication instead of the missing-project error. `npm run check` then passed again with 12 files/45 tests.
 
 ## Next safe task
+
+### Superseding direction — 2026-09-04
+
+The next safe task is to confirm a client-owned or developer-owned WordPress staging environment and design an adapter-first migration behind `src/lib/content/`. Resolve WordPress content types/fields, REST versus GraphQL, media/SEO plugins, draft preview, webhooks/revalidation, editor roles, credentials, migration, and rollback before implementation. A local WordPress instance is acceptable for development, but independent client testing requires publicly reachable staging. The Sanity guidance below remains historical/current-runtime guidance until the cutover is complete.
 
 The accumulated public/admin redesign and homepage motion work was committed as `4845c05`, pushed to `origin/main`, and deployed directly to Vercel Preview on 2026-09-02. Deployment `dpl_FEF79fhbsEPr6o31do3BExCM7noY` is assigned to <https://church-govern-staging.vercel.app>. The stable homepage and health endpoint returned HTTP 200, `/studio` returned a 307 to the configured hosted Studio, and the rendered homepage showed the expected hero with no browser console errors. The fourteen local agent-tool directories and local design captures are now ignored; the duplicate `main img.png` was not committed.
 

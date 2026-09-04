@@ -23,7 +23,9 @@ Use these sources in this order:
 
 If the sources disagree, document the conflict instead of silently choosing. Never invent company history, testimonials, product screenshots, compliance certifications, security guarantees, pricing, customer counts, or operational metrics.
 
-## Confirmed architecture (revised proposal, 2026-08-21)
+## Implemented architecture and pending client change
+
+The bullet points below describe the currently working implementation from the revised proposal dated 2026-08-21. On 2026-09-04 the owner reported a newer client request: use WordPress as a headless CMS while retaining the Next.js frontend. The WordPress migration is **not implemented** in the current repository. Preserve the Sanity path as a rollback baseline until the WordPress adapter, content migration, media, SEO, preview, and publishing flows are verified. Read `HANDOFF.md` before starting that work and record resolved choices in `docs/decisions.md`.
 
 - Next.js 16 App Router with React 19 and TypeScript.
 - Sanity is the editorial CMS and media system. Sanity hosts Studio and manages access; the website `/studio` route redirects to its configured HTTPS URL.
@@ -90,7 +92,7 @@ Before handoff:
 3. Update `docs/continuation-guide.md` with current status, migrations, environment changes, and the next safe task.
 4. State verification limits precisely.
 
-## Current handoff snapshot — 2026-08-25
+## Current handoff snapshot — 2026-09-04
 
 - Git source is published to the approved public repository `Arunodhai/Church-Govern-Website`. Client source documents, environment files, and provider linkage metadata are intentionally excluded.
 - Vercel Preview is live at `https://church-govern-staging.vercel.app`. It is shareable without Vercel SSO, deliberately `noindex`, and uses live Supabase operations. Server-only Supabase, rate-limit, and Resend values are stored as sensitive Preview variables.
@@ -115,7 +117,8 @@ Before handoff:
 - Latest deployed integration evidence: contact persistence returned a real UUID and `notificationStatus: sent`; topic, moderated comment, and rating writes also succeeded. The exact QA records and matching audit entries were removed, while rate-limit counters were preserved. Supabase administrator login and every operations route passed at 390-by-844. Resend inbox delivery still needs human confirmation.
 - On 2026-09-02 commit `a0985ed` was pushed and deployed as `dpl_CwgwriThVuVQoPFutdXeWe9mWigd` to the stable Vercel staging URL. Preview uses one sensitive server-only Viewer token for private Sanity reads (expires 2026-10-02), `USE_MOCK_CONTENT=false`, and `SANITY_CONTENT_DEMO_MODE=true`. A reversible published homepage edit appeared immediately on the stable site and the exact original content was restored. Representative routes and health passed, and `npm run check` passed with 13 files/51 tests plus the production build.
 - A text-only homepage edit initially could not publish because the reusable `imageWithAlt` schema incorrectly required an asset and alt text in every optional image slot. It now requires alt text only when an asset is selected. The existing `Hello Testing` homepage draft remains stored, all 53 documents passed error-level validation, and the corrected hosted Studio was redeployed on 2026-09-02. Refresh an already-open Studio tab to load the new schema.
-- Recommended next task: invite each named client tester to `vc24qe42` with their own Sanity account and the Editor role for create/edit/publish testing; never share a username/password or assign Administrator. Explain that only Sanity-modeled/rendered fields update the website. Before 2026-10-02, rotate or replace the staging Viewer token if the trial continues. Separately confirm the notification arrived at the temporary recipient and rotate the exposed-in-chat Resend key.
+- The newest client direction is WordPress as a headless CMS with the existing Next.js frontend. No WordPress code, instance, content model, plugin selection, API authentication, migration, or deployment has been completed. The safe next task is the staged adapter-first sequence in `HANDOFF.md`; do not delete Sanity first.
+- If the Sanity-backed preview continues during migration, use individual least-privilege editor invitations rather than shared credentials. Before 2026-10-02, rotate or replace the staging Viewer token if it remains in use. Separately confirm the notification recipient and rotate any credential that was pasted into chat.
 
 ## Common commands
 

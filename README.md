@@ -1,6 +1,8 @@
 # Church Govern website
 
-Church Govern is a public product, editorial, and lead-generation website for a church-administration platform. The revised architecture uses Next.js for the website, Sanity for editorial content and media, Supabase PostgreSQL for operational records, Resend for transactional notifications, and Hostinger Web Apps for hosting.
+Church Govern is a public product, editorial, and lead-generation website for a church-administration platform. The implemented architecture uses Next.js for the website, Sanity for editorial content and media, Supabase PostgreSQL for operational records, Resend for transactional notifications, and a no-index Vercel staging deployment.
+
+**Handoff note (2026-09-04):** the client has since requested WordPress as a headless CMS while retaining the existing Next.js frontend. That migration is not implemented yet. The working Sanity integration remains the safe baseline until a WordPress adapter and content migration pass acceptance. New developers should begin with [HANDOFF.md](HANDOFF.md).
 
 Client-supplied content and the detailed feature requirements remain the scope source. Content in this repository is provisional until the client approves it. Do not invent testimonials, product screenshots, compliance claims, customer data, or company history.
 
@@ -62,6 +64,7 @@ Do not claim deployment, live content import, email delivery, account configurat
 
 ## Handoff documentation
 
+- [Developer handoff](HANDOFF.md)
 - [Continuation guide](docs/continuation-guide.md)
 - [Architecture](docs/architecture.md)
 - [Hostinger deployment](docs/hostinger-deployment.md)

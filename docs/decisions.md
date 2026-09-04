@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | Next.js App Router and TypeScript | Confirmed | Follow the installed Next.js 16 documentation and Server Component defaults. |
 | Sanity editorial CMS and Assets | Confirmed, revised proposal | `/studio` replaces the custom content CMS; Sanity owns editorial content/media and editor access. |
+| WordPress headless CMS request | Pending reconciliation, client request reported 2026-09-04 | Client now prefers WordPress while retaining Next.js. Not implemented; preserve Sanity until an adapter-first migration and rollback are verified. |
 | Supabase operational data/auth | Confirmed, narrowed | Supabase stores leads, engagement, moderation, audit, and analytics; RLS remains mandatory. `/admin` is operational only. |
 | Resend transactional email | Confirmed, revised proposal | Notify after successful persistence; secrets remain server-only and failure must not lose the lead. |
 | Hostinger Web Apps deployment | Confirmed, revised proposal | Use a Node.js 22 Next.js server and platform-neutral environment controls for production; Vercel is temporary Preview infrastructure only. |
@@ -32,6 +33,10 @@
 ## Architecture revision — 2026-08-21
 
 The client-approved proposal supersedes the old Supabase-content/Vercel decisions. Legacy content tables and Storage records remain for rollback/reference, but new editorial work belongs in Sanity. Comments and ratings use a stable Sanity blog slug in Supabase. SBL owns the paid production accounts and grants developer access.
+
+### WordPress supersession request — 2026-09-04
+
+The owner reported a new client preference for WordPress as a headless CMS with the existing Next.js frontend. This conflicts with the Sanity choice in the revised proposal and therefore needs written scope confirmation. No implementation decision has yet been made for REST versus GraphQL, custom fields/content types, SEO/media plugins, preview, webhook revalidation, WordPress hosting, authentication, migration, or rollback. Until those are resolved and accepted, Sanity remains the working staging baseline and must not be destructively removed.
 
 ## Stakeholder Preview deployment — 2026-08-22
 
